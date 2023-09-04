@@ -75,9 +75,20 @@ body {
   margin: 0;
   overflow: auto;
 }
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 @media screen and (max-width: 768px) {
   .tabs-list-container {
     overflow: auto;
     padding: 10px;
   }
+}
+.dish-list-container {
+  padding: 0;
+  list-style: none;
+  padding: 10px 40px 20px 40px;
 }

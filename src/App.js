@@ -1,5 +1,7 @@
 import React from 'react'
+import Loader from 'react-loader-spinner'
 import SlideMenu from './components/SlideMenu'
+import DishesList from './components/DishesList'
 import './App.css'
 
 const apiConstraints = {
@@ -52,6 +54,7 @@ class App extends React.Component {
           categoryDishes: eachTable.category_dishes,
         }),
       )
+      //   console.log(updatedTableMenuListData)
 
       //   const updatedCategoryDishesData = data[0].table_menu_list.category_dishes.map(
       //     eachCategory => ({
@@ -92,7 +95,11 @@ class App extends React.Component {
     this.setState({active: menuCategoryId})
   }
 
-  renderLoaderView = () => <div>Loading...</div>
+  renderLoaderView = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#ff0000" height="50" width="50" />
+    </div>
+  )
 
   renderSuccessView = () => {
     const {
@@ -101,6 +108,19 @@ class App extends React.Component {
       tableMenuListData,
       active,
     } = this.state
+    const dishesList = tableMenuListData.map(each =>
+      each.categoryDishes.map(eachCategory => ({
+        dishAvailability: eachCategory.dish_Availability,
+        dishType: eachCategory.dish_Type,
+        dishCalories: eachCategory.dish_calories,
+        dishCurrency: eachCategory.dish_currency,
+        dishDescription: eachCategory.dish_description,
+        dishId: eachCategory.dish_id,
+        dishImage: eachCategory.dish_image,
+        dishName: eachCategory.dish_name,
+        dishPrice: eachCategory.dish_price,
+      })),
+    )
 
     return (
       <>
@@ -126,6 +146,11 @@ class App extends React.Component {
               activeTab={this.activeTab}
               isActive={eachMenu.menuCategoryId === active}
             />
+          ))}
+        </ul>
+        <ul className="dish-list-container">
+          {dishesList.map(eachDish => (
+            <DishesList eachDish={eachDish} key={eachDish.dishId} />
           ))}
         </ul>
       </>
