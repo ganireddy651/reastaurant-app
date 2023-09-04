@@ -1,0 +1,29 @@
+.active-tab {
+  color: #ff1b0a;
+  background-color: transparent;
+  border-bottom: 2px solid #ff1b0a;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+}
+.inactive-tab {
+  color: #000000;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+}
+@media screen and (max-width: 768px) {
+  .inactive-tab {
+    font-size: 20px;
+    width: 220px;
+  }
+  .active-tab {
+    font-size: 20px;
+    width: 220px;
+  }
+}
